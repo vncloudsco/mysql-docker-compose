@@ -9,3 +9,10 @@ git clone https://github.com/vncloudsco/mysql-docker-compose
 cd mysql-docker-compose
 bash install.sh
 ```
+### Support docker-compose on ARM64 
+
+```
+git clone https://github.com/vncloudsco/mysql-docker-compose
+cd mysql-docker-compose
+bash install-arm.sh
+```
