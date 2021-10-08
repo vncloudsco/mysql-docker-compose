@@ -79,7 +79,7 @@ version: '3'
 
 services:
   # Database
-  db:
+  $db_creat:
     image: mysql:5.7
     ports:
       - '$port:3306'
