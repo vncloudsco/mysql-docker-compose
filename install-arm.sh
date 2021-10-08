@@ -76,7 +76,7 @@ version: '3'
 services:
   # Database
   db:
-    image: mysql:5.7
+    image: mysql/mysql-server:8.0-aarch64
     ports:
       - '$port:3306'
     volumes:
