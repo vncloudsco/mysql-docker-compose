@@ -90,7 +90,7 @@ EOF
 }
 
 function docker_start() {
-    docker-compose up -d -f docker-compose-$port.yaml
+    docker-compose -f docker-compose-$port.yaml up -d 
 }
 docker_install
 docker_compose_install
