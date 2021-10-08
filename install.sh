@@ -1,5 +1,23 @@
 #!/bin/bash
 
+function docker_install()
+{
+    docker_check=$(which docker)
+    if [ -z "$docker_check" ]; then
+        curl -fsSL https://get.docker.com -o get-docker.sh
+        sh get-docker.sh
+        fi
+}
+
+function docker_compose_install()
+{
+    docker_compose_check=$(which docker-compose)
+    if [ -z "$docker_compose_check" ]; then
+        sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+        fi
+}
+
 function port_checker() {
     while   :
     do
@@ -80,7 +98,8 @@ EOF
 function docker_start() {
     docker-compose up -d -f docker-compose-$port.yaml
 }
-
+docker_install
+docker_compose_install
 port_checker
 pass_random
 user_random
