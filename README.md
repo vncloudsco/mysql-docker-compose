@@ -1,4 +1,4 @@
-### mysql-docker-compose
+### mysql install with docker compose
 
 install multiple mysql serrver with docker compose
 
