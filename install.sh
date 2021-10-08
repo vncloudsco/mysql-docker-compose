@@ -107,11 +107,12 @@ docker_creat_file
 docker_start
 
 printf "=========================================================================\n"
-printf "                    Cai dat thanh cong mysql tren docker                 \n"
+printf "                    Install complete mysql on docker                 \n"
 printf "==========================================================================\n"
-printf "              Luu lai thong tin duoi day de truy cap vao mysql            \n"
+printf "               Please save infomation mysql connect use later            \n"
+printf "     This information you can check later in the file database-$port.env \n"
 printf "                 Port:                      $port                         \n"
-printf "                 Mat khau:                  $pass_creat                         \n"
+printf "                 Password:                  $pass_creat                         \n"
 printf "                 User Login:                $user_creat                         \n"
 printf "                 Database:                  $db_creat                           \n"
 printf "==========================================================================\n"
