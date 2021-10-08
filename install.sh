@@ -1,7 +1,6 @@
 #!/bin/bash
 
-function docker_install()
-{
+function docker_install() {
     docker_check=$(which docker)
     if [ -z "$docker_check" ]; then
         curl -fsSL https://get.docker.com -o get-docker.sh
@@ -9,8 +8,7 @@ function docker_install()
         fi
 }
 
-function docker_compose_install()
-{
+function docker_compose_install() {
     docker_compose_check=$(which docker-compose)
     if [ -z "$docker_compose_check" ]; then
         sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
