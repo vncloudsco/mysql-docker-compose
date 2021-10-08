@@ -1,6 +1,6 @@
 ### mysql install with docker compose
 
-install multiple mysql serrver with docker compose
+install multiple mysql server with docker compose
 
 ### generate config and running
 
