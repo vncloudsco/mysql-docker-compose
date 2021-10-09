@@ -21,8 +21,11 @@ function port_checker() {
     do
         port=$(shuf -i 10000-40000 -n 1)
         port_checking=$(netstat -nplt | grep $port)
+        port_checkingv2=$(find ./ -type f -name "*.yaml" -exec grep '$port' {} \;)
         if [ -z "$port_checking" ]; then
-            break
+             if [ -z "$port_checkingv2" ]; then
+                break
+            fi
         fi
     done
 
