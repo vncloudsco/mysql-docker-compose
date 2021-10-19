@@ -11,8 +11,11 @@ function docker_install() {
 function docker_compose_install() {
     docker_compose_check=$(which docker-compose)
     if [ -z "$docker_compose_check" ]; then
-        sudo curl -L "https://github.com/docker/compose/releases/download/v2.0.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        sudo chmod +x /usr/local/bin/docker-compose
+        compose_version=$(curl https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+        output='/usr/local/bin/docker-compose'
+        curl -L https://github.com/docker/compose/releases/download/$compose_version/docker-compose-$(uname -s)-$(uname -m) -o $output
+        chmod +x $output
+        
     fi
 }
 
@@ -22,12 +25,12 @@ function port_checker() {
         port_checking=$(netstat -nplt | grep $port)
         port_checkingv2=$(find ./ -type f -name "*.yaml" -exec grep '$port' {} \;)
         if [ -z "$port_checking" ]; then
-             if [ -z "$port_checkingv2" ]; then
+            if [ -z "$port_checkingv2" ]; then
                 break
             fi
         fi
     done
-
+    
 }
 
 function pass_random() {
@@ -38,7 +41,7 @@ function pass_random() {
             break
         fi
     done
-
+    
 }
 function user_random() {
     while :; do
@@ -48,7 +51,7 @@ function user_random() {
             break
         fi
     done
-
+    
 }
 function db_random() {
     while :; do
@@ -58,7 +61,7 @@ function db_random() {
             break
         fi
     done
-
+    
 }
 
 function docker_creat_file_db() {
@@ -93,7 +96,7 @@ EOF
 }
 
 function docker_start() {
-    docker-compose -f docker-compose-$port.yaml up -d 
+    docker-compose -f docker-compose-$port.yaml up -d
 }
 docker_install
 docker_compose_install
