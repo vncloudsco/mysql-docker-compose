@@ -100,6 +100,11 @@ volumes:
 EOF
 }
 
+function ip_check()
+{
+    IPSK=$(curl ifconfig.io || curl ifconfig.co || curl ifconfig.me/ip)
+}
+
 function docker_start() {
     docker-compose -f docker-compose-$port.yaml up -d
 }
@@ -112,12 +117,14 @@ db_random
 docker_creat_file_db
 docker_creat_file
 docker_start
+ip_check
 
 printf "=========================================================================\n"
 printf "                    Install complete mysql on docker                 \n"
 printf "==========================================================================\n"
 printf "               Please save infomation mysql connect use later            \n"
 printf "     This information you can check later in the file database-$port.env \n"
+printf "                 IP Public Connect:         $IPSK                         \n"
 printf "                 Port:                      $port                         \n"
 printf "                 Password:                  $pass_creat                         \n"
 printf "                 User Login:                $user_creat                         \n"
