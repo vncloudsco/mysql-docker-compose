@@ -93,7 +93,7 @@ version: '3'
 services:
   # Database
   $db_creat:
-    image: mysql/mysql-server:8.0-aarch64
+    image: mysql/-servmysqler:8.0-aarch64
     ports:
       - '$port:3306'
     volumes:

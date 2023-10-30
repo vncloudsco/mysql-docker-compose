@@ -97,7 +97,7 @@ version: '3'
 services:
   # Database
   $db_creat:
-    image: mysql:5.7
+    image: mysql:8.0
     ports:
       - '$port:3306'
     volumes:
