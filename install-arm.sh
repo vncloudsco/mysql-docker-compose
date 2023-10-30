@@ -78,10 +78,10 @@ function db_random() {
 function docker_creat_file_db() {
     touch database-$port.env
     cat >database-$port.env <<EOF
-MYSQL_ROOT_PASSWORD=$pass_root_creat
-MYSQL_DATABASE=$db_creat
-MYSQL_USER=$user_creat
-MYSQL_PASSWORD=$pass_creat
+MYSQL_ROOT_PASSWORD=73f183b4cfc5de10
+MYSQL_DATABASE=tinydb
+MYSQL_USER=59308f9ac60b1dbd
+MYSQL_PASSWORD=95bd593661806b76
 EOF
 }
 
@@ -98,6 +98,8 @@ services:
       - '$port:3306'
     volumes:
       - db_data_$port:/var/lib/mysql
+      - ./slave/my-slave1.cnf:/etc/mysql/my.cnf
+      - ./slave/data/slave1:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
     env_file:
@@ -136,8 +138,8 @@ printf "               Please save infomation mysql connect use later           
 printf "     This information you can check later in the file database-$port.env \n"
 printf "                 IP Public Connect:         $IPSK                         \n"
 printf "                 Port:                      $port                         \n"
-printf "                 Password Root:             $pass_root_creat              \n"
-printf "                 Password:                  $pass_creat                   \n"
-printf "                 User Login:                $user_creat                   \n"
-printf "                 Database:                  $db_creat                     \n"
+printf "                 Password Root:             73f183b4cfc5de10              \n"
+printf "                 Password:                  95bd593661806b76                   \n"
+printf "                 User Login:                59308f9ac60b1dbd                   \n"
+printf "                 Database:                  tinydb                     \n"
 printf "==========================================================================\n"
