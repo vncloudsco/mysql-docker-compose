@@ -92,6 +92,7 @@ services:
       - '$port:3306'
     volumes:
       - db_data_$port:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
     env_file:
       - database-$port.env # configure mysql
