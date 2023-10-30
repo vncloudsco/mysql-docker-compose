@@ -46,6 +46,16 @@ function pass_random() {
     done
     
 }
+function pass_root_random() {
+    while :; do
+        pass_root_creat=$(openssl rand -hex 10)
+        pass=$(find ./ -type f -name "*.yaml" -exec grep '$pass_creat' {} \;)
+        if [ -z "$pass" ]; then
+            break
+        fi
+    done
+    
+}
 function user_random() {
     while   :
     do
@@ -72,7 +82,7 @@ function db_random() {
 function docker_creat_file_db() {
     touch database-$port.env
     cat > database-$port.env <<EOF
-MYSQL_ROOT_PASSWORD=$pass_creat
+MYSQL_ROOT_PASSWORD=$pass_root_creat
 MYSQL_DATABASE=$db_creat
 MYSQL_USER=$user_creat
 MYSQL_PASSWORD=$pass_creat
@@ -113,6 +123,7 @@ docker_install
 docker_compose_install
 port_checker
 pass_random
+pass_root_random
 user_random
 db_random
 docker_creat_file_db
@@ -127,7 +138,8 @@ printf "               Please save infomation mysql connect use later           
 printf "     This information you can check later in the file database-$port.env \n"
 printf "                 IP Public Connect:         $IPSK                         \n"
 printf "                 Port:                      $port                         \n"
-printf "                 Password:                  $pass_creat                         \n"
-printf "                 User Login:                $user_creat                         \n"
-printf "                 Database:                  $db_creat                           \n"
+printf "                 Password Root:             $pass_root_creat              \n"
+printf "                 Password:                  $pass_creat                   \n"
+printf "                 User Login:                $user_creat                   \n"
+printf "                 Database:                  $db_creat                     \n"
 printf "==========================================================================\n"
